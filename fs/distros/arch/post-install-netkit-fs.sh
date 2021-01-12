@@ -14,3 +14,12 @@ DISTRO_DIRECTORY="$5"
 
 # Attempt to change default shell to zsh (but do not fail if zsh not installed)
 chroot $MOUNT_DIRECTORY chsh -s /usr/bin/zsh || /bin/true
+
+chroot $MOUNT_DIRECTORY ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+
+chroot $MOUNT_DIRECTORY locale-gen
+
+# Kill gpg-agent, used by pacman (process prevents image being unmounted)
+#sleep 0.5
+#killall gpg-agent
+fuser -c -k $MOUNT_DIRECTORY
