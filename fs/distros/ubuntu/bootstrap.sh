@@ -1,3 +1,5 @@
+#!/bin/bash
+
 MOUNT_DIRECTORY="$1"
 DISTRO_DIRECTORY="$2"
 
